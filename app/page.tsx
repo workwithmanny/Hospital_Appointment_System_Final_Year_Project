@@ -1,141 +1,250 @@
 import Link from "next/link";
 import Image from "next/image";
+import {
+  Calendar,
+  Clock,
+  ShieldCheck,
+  ArrowRight,
+  Activity,
+  Users,
+  Stethoscope,
+  Video,
+  ClipboardList,
+  Star
+} from "lucide-react";
 
 export default function LandingPage() {
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-10">
-      <div className="gradient-orbit" />
+    <div className="min-h-screen bg-white font-sans text-slate-900 selection:bg-blue-100 selection:text-blue-700">
 
-      <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between px-6 pb-6 pt-4 sm:px-12">
-        <div className="flex items-center gap-3">
-          <div className="pill flex items-center gap-2 px-3 py-1 text-xs text-slate-200">
-            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-cyan-400/10 text-cyan-300 shadow-[0_0_0_1px_rgba(34,211,238,0.6)]">
-              ✚
-            </span>
-            <span className="font-medium tracking-wide">
-              LiffeyCare Hospital · Dublin 8
-            </span>
-          </div>
-        </div>
-        <div className="hidden items-center gap-4 text-sm text-slate-200/80 sm:flex">
-          <span>24/7 Emergency</span>
-          <span className="h-1 w-1 rounded-full bg-slate-500" />
-          <span>Same‑day clinics</span>
-        </div>
-      </div>
-
-      <main className="relative z-20 grid w-full max-w-6xl grid-cols-1 items-center gap-10 pt-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
-        <section className="space-y-8">
-          <div className="inline-flex items-center gap-3 rounded-full border border-slate-700/70 bg-slate-900/60 px-3 py-1 text-xs text-cyan-200 shadow-[0_0_0_1px_rgba(15,23,42,0.9)]">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_0_4px_rgba(52,211,153,0.35)]" />
-            <span className="uppercase tracking-[0.2em] text-slate-300 text-[0.7rem]">
-              Dublin · Patient portal
+      {/* 1. Header Navigation */}
+      <nav className="sticky top-0 z-50 border-b border-slate-100 bg-white/70 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 sm:px-12">
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 shadow-lg shadow-blue-200">
+              <span className="text-xl font-bold text-white">✚</span>
+            </div>
+            <span className="text-2xl font-black tracking-tight text-slate-900">
+              Liffey<span className="text-blue-600">Care</span>
             </span>
           </div>
 
-          <div className="space-y-3">
-            <h1 className="text-balance text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl lg:text-6xl">
-              Book your{" "}
-              <span className="bg-gradient-to-r from-cyan-300 via-sky-400 to-blue-400 bg-clip-text text-transparent">
-                LiffeyCare
-              </span>{" "}
-              appointments online.
-            </h1>
-            <p className="max-w-lg text-balance text-sm leading-relaxed text-slate-300/85 sm:text-[0.95rem]">
-              A calm patient portal for Dublin — check times, confirm visits and
-              get reminders without sitting on hold.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="hidden items-center gap-10 md:flex">
+            <Link href="#how-it-works" className="text-sm font-semibold text-slate-500 hover:text-blue-600 transition-colors">How it works</Link>
+            <Link href="#services" className="text-sm font-semibold text-slate-500 hover:text-blue-600 transition-colors">Specialists</Link>
+            <div className="h-4 w-px bg-slate-200" />
+            <Link href="/login" className="text-sm font-bold text-slate-700 hover:text-blue-600">Log in</Link>
             <Link
               href="/signup"
-              className="primary-button inline-flex items-center justify-center px-6 py-2.5 text-sm"
+              className="group flex items-center gap-2 rounded-full bg-slate-900 px-6 py-2.5 text-sm font-bold text-white transition-all hover:bg-blue-600 hover:shadow-xl hover:shadow-blue-200"
             >
-              Get started as a patient
-              <span className="ml-2 text-base">→</span>
-            </Link>
-            <Link
-              href="/login"
-              className="subtle-link inline-flex items-center justify-center rounded-full border border-slate-700/80 bg-slate-900/40 px-5 py-2.5 text-sm"
-            >
-              I already have an account
+              Book Now
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
+        </div>
+      </nav>
 
-          <div className="grid max-w-xl grid-cols-2 gap-3 text-xs text-slate-300/90 sm:text-[0.78rem]">
-            <div className="card-border">
-              <div className="card-inner flex h-full flex-col justify-between p-3.5">
-                <div className="mb-2 flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.18em] text-slate-400">
-                  <span className="h-1 w-1 rounded-full bg-cyan-400" />
-                  <span>For patients</span>
-                </div>
-                <p className="text-[0.8rem] leading-relaxed text-slate-200">
-                  See real‑time availability, book follow‑ups, and receive SMS
-                  reminders before your visit.
+      <main>
+        {/* 2. Focused Hero Section */}
+        <section className="relative overflow-hidden pt-16 pb-24 lg:pt-32">
+          <div className="mx-auto max-w-7xl px-6 sm:px-12">
+            <div className="flex flex-col items-center text-center lg:flex-row lg:text-left">
+              <div className="flex-1 space-y-8">
+                <h1 className="text-5xl font-[900] leading-[1.1] tracking-tight text-slate-900 sm:text-6xl lg:text-7xl">
+                  Modern care <br />
+                  <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                    for everyone.
+                  </span>
+                </h1>
+
+
+                <p className="max-w-2xl text-xl leading-relaxed text-slate-500 lg:mx-0">
+                  Dublin’s most advanced digital patient portal. Connect with top-tier specialists, manage appointments, and access your health records from any device.
                 </p>
+
+                <div className="flex flex-wrap items-center gap-5 justify-center lg:justify-start">
+                  <Link
+                    href="/signup"
+                    className="flex h-16 items-center justify-center rounded-2xl bg-blue-600 px-10 text-lg font-bold text-white shadow-2xl shadow-blue-200 transition-all hover:bg-blue-700 hover:scale-[1.02]"
+                  >
+                    Start Your Journey
+                  </Link>
+                  <Link
+                    href="#how-it-works"
+                    className="flex h-16 items-center justify-center rounded-2xl border border-slate-200 bg-white px-8 text-lg font-bold text-slate-700 hover:bg-slate-50 transition-all"
+                  >
+                    Watch how it works
+                  </Link>
+                </div>
+
+                <div className="flex items-center gap-4 pt-4 text-slate-400">
+                  <div className="flex -space-x-3">
+                    {[1, 2, 3, 4].map((i) => (
+                      <div key={i} className="h-10 w-10 rounded-full border-4 border-white bg-slate-100 overflow-hidden">
+                        <Image src={`https://i.pravatar.cc/150?u=${i + 10}`} alt="user" width={40} height={40} />
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-sm font-medium">
+                    <span className="font-bold text-slate-900">4.9/5 Rating</span> from 2,000+ Dubliners
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="card-border">
-              <div className="card-inner flex h-full flex-col justify-between p-3.5">
-                <div className="mb-2 flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.18em] text-slate-400">
-                  <span className="h-1 w-1 rounded-full bg-emerald-400" />
-                  <span>For clinicians</span>
+
+              <div className="relative mt-20 flex-1 lg:mt-0 lg:ml-20">
+                <div className="relative z-10 overflow-hidden rounded-[4rem] border-[16px] border-slate-50 shadow-2xl">
+                  <Image
+                    src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=1000"
+                    alt="Professional doctor"
+                    width={1000}
+                    height={1200}
+                    className="aspect-[4/5] object-cover transition-transform duration-700 hover:scale-110"
+                  />
                 </div>
-                <p className="text-[0.8rem] leading-relaxed text-slate-200">
-                  A clearer clinic list every day — with fewer DNAs and
-                  smarter triage for urgent slots.
-                </p>
+                {/* Decorative Elements */}
+                <div className="absolute -right-20 -top-20 h-96 w-96 rounded-full bg-blue-100/50 blur-[100px]" />
+                <div className="absolute -left-20 -bottom-20 h-96 w-96 rounded-full bg-cyan-100/50 blur-[100px]" />
               </div>
             </div>
           </div>
-
-          <p className="flex items-center gap-3 text-[0.72rem] uppercase tracking-[0.28em] text-slate-500">
-            <span className="h-px w-10 bg-gradient-to-r from-transparent via-slate-500/80 to-transparent" />
-            Built for Irish healthcare, powered by secure cloud infrastructure.
-            <span className="hidden h-px w-6 bg-gradient-to-r from-slate-500/80 to-transparent sm:block" />
-          </p>
         </section>
 
-        <section className="relative">
-          <div className="glass-panel relative mx-auto flex max-w-md flex-col gap-5 p-6 sm:p-7">
-            <div className="flex items-center justify-between gap-3 text-xs text-slate-300/90">
-              <div>
-                <p className="text-[0.72rem] uppercase tracking-[0.22em] text-slate-400">
-                  A calmer waiting room
-                </p>
-                <p className="mt-1 text-[0.8rem] text-slate-100">
-                  LiffeyCare outpatient entrance · Dublin 8
-                </p>
-              </div>
-              <div className="pill flex items-center gap-2 px-3 py-1 text-[0.7rem] text-slate-200">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_0_4px_rgba(52,211,153,0.3)]" />
-                <span>Patient portal first</span>
-              </div>
+        {/* 3. Trusted By (Logo Section) */}
+        <section className="border-y border-slate-100 bg-slate-50/50 py-12">
+          <div className="mx-auto max-w-7xl px-6 sm:px-12 text-center">
+            <p className="mb-8 text-sm font-bold uppercase tracking-widest text-slate-400">Aligned with Ireland's Leading Authorities</p>
+            <div className="flex flex-wrap justify-center gap-12 grayscale opacity-50">
+              {/* Replace with actual partner logos as needed */}
+              <span className="text-xl font-bold">HSE Ireland</span>
+              <span className="text-xl font-bold">Medical Council</span>
+              <span className="text-xl font-bold">VHI Health</span>
+              <span className="text-xl font-bold">Laya Healthcare</span>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. How It Works (Process Section) */}
+        <section id="how-it-works" className="py-24 lg:py-32">
+          <div className="mx-auto max-w-7xl px-6 sm:px-12">
+            <div className="text-center space-y-4 mb-20">
+              <h2 className="text-4xl font-black tracking-tight text-slate-900 sm:text-5xl">Healthcare in three simple steps</h2>
+              <p className="text-lg text-slate-500">We've removed the bureaucracy. Just focus on feeling better.</p>
             </div>
 
-            <div className="relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/70">
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 via-sky-500/10 to-slate-900/80" />
-              <Image
-                src="/hospital-hero.svg"
-                alt="Illustration of a modern Dublin hospital lobby with calm patients checking in digitally"
-                width={640}
-                height={480}
-                className="relative z-10 h-auto w-full"
-                priority
-              />
+            <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
+              {[
+                { step: "01", title: "Create Profile", desc: "Sign up in minutes with your PPS number for instant verification.", icon: ClipboardList, color: "bg-blue-50 text-blue-600" },
+                { step: "02", title: "Choose Specialty", desc: "Select from over 50+ vetted clinicians and specialists in Dublin.", icon: Stethoscope, color: "bg-emerald-50 text-emerald-600" },
+                { step: "03", title: "Attend Digitally", desc: "Meet via secure video link or book an in-person clinic visit.", icon: Video, color: "bg-purple-50 text-purple-600" },
+              ].map((item, i) => (
+                <div key={i} className="relative group p-8 rounded-3xl transition-all hover:bg-slate-50">
+                  <div className={`mb-6 flex h-16 w-16 items-center justify-center rounded-2xl ${item.color} text-2xl font-bold`}>
+                    <item.icon className="h-8 w-8" />
+                  </div>
+                  <div className="absolute top-8 right-8 text-6xl font-black text-slate-100 group-hover:text-slate-200 transition-colors">{item.step}</div>
+                  <h3 className="text-2xl font-bold text-slate-900">{item.title}</h3>
+                  <p className="mt-3 text-slate-500 leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 5. Specialists / Department Section (Grid Style) */}
+        <section id="services" className="bg-slate-900 py-24 text-white lg:py-32 overflow-hidden">
+          <div className="mx-auto max-w-7xl px-6 sm:px-12">
+            <div className="mb-20 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+              <div className="space-y-4">
+                <h2 className="text-4xl font-black tracking-tight sm:text-5xl">Our Medical Departments</h2>
+                <p className="max-w-xl text-slate-400">Access world-class diagnostics and treatment across every major field of medicine.</p>
+              </div>
+              <Link href="#" className="inline-flex items-center font-bold text-blue-400 hover:text-blue-300">
+                View all departments <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
             </div>
 
-            <div className="flex items-center justify-between text-[0.72rem] text-slate-400">
-              <p className="flex items-center gap-2">
-                <span className="h-1 w-1 rounded-full bg-cyan-300" />
-                Built for Irish healthcare · hosted in EU regions.
-              </p>
-              <p>HSE‑aligned · GDPR‑ready</p>
+            <div className="grid grid-cols-1 gap-px bg-slate-800 overflow-hidden rounded-3xl border border-slate-800">
+              {[
+                { title: "Cardiology", stats: "12 Specialists", icon: Activity },
+                { title: "Psychiatry", stats: "08 Specialists", icon: ShieldCheck },
+                { title: "Pediatrics", stats: "15 Specialists", icon: Users },
+                { title: "Surgery", stats: "10 Specialists", icon: Stethoscope },
+                { title: "Family Medicine", stats: "22 Specialists", icon: ClipboardList },
+                { title: "Diagnostics", stats: "24/7 Lab", icon: Clock },
+              ].map((dept, i) => (
+                <div key={i} className="group bg-slate-900 p-10 transition-all hover:bg-blue-600">
+                  <dept.icon className="mb-6 h-10 w-10 text-blue-500 group-hover:text-white" />
+                  <h3 className="text-2xl font-bold">{dept.title}</h3>
+                  <p className="mt-2 text-slate-400 group-hover:text-blue-100">{dept.stats}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
       </main>
+
+      {/* 6. Professional Footer */}
+      <footer className="bg-white pt-24 pb-12">
+        <div className="mx-auto max-w-7xl px-6 sm:px-12">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
+            <div className="lg:col-span-5 space-y-6">
+              <div className="flex items-center gap-2">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white font-bold">✚</div>
+                <span className="text-2xl font-black">LiffeyCare</span>
+              </div>
+              <p className="max-w-sm text-lg text-slate-500">
+                Revolutionizing the Irish healthcare experience through empathy, speed, and secure technology.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-8 lg:col-span-7 lg:grid-cols-3">
+              <div className="space-y-4">
+                <h4 className="font-bold">Platform</h4>
+                <ul className="space-y-2 text-slate-500">
+                  <li><Link href="#" className="hover:text-blue-600">Find a Doctor</Link></li>
+                  <li><Link href="#" className="hover:text-blue-600">Video Consult</Link></li>
+                  <li><Link href="#" className="hover:text-blue-600">Emergency Care</Link></li>
+                </ul>
+              </div>
+              <div className="space-y-4">
+                <h4 className="font-bold">Company</h4>
+                <ul className="space-y-2 text-slate-500">
+                  <li><Link href="#" className="hover:text-blue-600">About Us</Link></li>
+                  <li><Link href="#" className="hover:text-blue-600">Carrers</Link></li>
+                  <li><Link href="/contact" className="hover:text-blue-600">Contact</Link></li>
+                </ul>
+              </div>
+              <div className="space-y-4">
+                <h4 className="font-bold">Legal</h4>
+                <ul className="space-y-2 text-slate-500">
+                  <li><Link href="#" className="hover:text-blue-600">Privacy Policy</Link></li>
+                  <li><Link href="#" className="hover:text-blue-600">GDPR Compliance</Link></li>
+                  <li><Link href="#" className="hover:text-blue-600">Terms of Service</Link></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className="mt-12 border-t border-slate-100 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-slate-400 text-sm">For healthcare professionals:</p>
+              <Link
+                href="/doctor/login"
+                className="flex items-center gap-2 rounded-2xl border-2 border-blue-600 bg-white px-6 py-3 text-sm font-black text-blue-600 hover:bg-blue-50 transition-all"
+              >
+                <Stethoscope className="h-4 w-4" />
+                Doctor/Nurse Login
+              </Link>
+            </div>
+          </div>
+          <div className="mt-8 border-t border-slate-100 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p className="text-slate-400 text-sm">© 2026 LiffeyCare Medical Group. All rights reserved.</p>
+            <div className="flex gap-6 text-slate-400 text-sm">
+              <span>HSE-Certified Infrastructure</span>
+              <span>ISO 27001 Certified</span>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

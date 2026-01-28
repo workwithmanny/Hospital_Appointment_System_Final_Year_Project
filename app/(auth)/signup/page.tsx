@@ -7,8 +7,13 @@ import { supabaseBrowserClient } from "@/lib/supabaseClient";
 
 export default function SignupPage() {
   const router = useRouter();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [ppsNumber, setPpsNumber] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
@@ -29,6 +34,14 @@ export default function SignupPage() {
             typeof window !== "undefined"
               ? `${window.location.origin}/login`
               : undefined,
+          data: {
+            first_name: firstName,
+            last_name: lastName,
+            full_name: `${firstName} ${lastName}`,
+            phone: phone || null,
+            date_of_birth: dateOfBirth || null,
+            pps_number: ppsNumber || null,
+          },
         },
       });
 
@@ -63,6 +76,44 @@ export default function SignupPage() {
       </div>
 
       <form onSubmit={handleSignup} className="space-y-4">
+        <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-1.5 text-sm">
+            <label
+              htmlFor="firstName"
+              className="block text-xs font-medium uppercase tracking-[0.2em] text-slate-400"
+            >
+              First Name
+            </label>
+            <input
+              id="firstName"
+              type="text"
+              required
+              className="input"
+              placeholder="John"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+          </div>
+
+          <div className="space-y-1.5 text-sm">
+            <label
+              htmlFor="lastName"
+              className="block text-xs font-medium uppercase tracking-[0.2em] text-slate-400"
+            >
+              Last Name
+            </label>
+            <input
+              id="lastName"
+              type="text"
+              required
+              className="input"
+              placeholder="Doe"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+          </div>
+        </div>
+
         <div className="space-y-1.5 text-sm">
           <label
             htmlFor="email"
@@ -98,6 +149,62 @@ export default function SignupPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+        </div>
+
+        <div className="space-y-1.5 text-sm">
+          <label
+            htmlFor="phone"
+            className="block text-xs font-medium uppercase tracking-[0.2em] text-slate-400"
+          >
+            Phone Number <span className="text-slate-500">(optional)</span>
+          </label>
+          <input
+            id="phone"
+            type="tel"
+            className="input"
+            placeholder="+353 85 123 4567"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+          />
+        </div>
+
+        <div className="space-y-1.5 text-sm">
+          <label
+            htmlFor="dateOfBirth"
+            className="block text-xs font-medium uppercase tracking-[0.2em] text-slate-400"
+          >
+            Date of Birth
+          </label>
+          <input
+            id="dateOfBirth"
+            type="date"
+            required
+            className="input"
+            value={dateOfBirth}
+            onChange={(e) => setDateOfBirth(e.target.value)}
+          />
+        </div>
+
+        <div className="space-y-1.5 text-sm">
+          <label
+            htmlFor="ppsNumber"
+            className="block text-xs font-medium uppercase tracking-[0.2em] text-slate-400"
+          >
+            PPS Number
+          </label>
+          <input
+            id="ppsNumber"
+            type="text"
+            required
+            className="input"
+            placeholder="1234567A"
+            maxLength={9}
+            value={ppsNumber}
+            onChange={(e) => setPpsNumber(e.target.value.toUpperCase())}
+          />
+          <p className="text-xs text-slate-400 mt-1">
+            Required for Irish healthcare system verification
+          </p>
         </div>
 
         {error && (
